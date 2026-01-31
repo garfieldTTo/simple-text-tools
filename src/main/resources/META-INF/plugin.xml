@@ -1,0 +1,64 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.jf.jf</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
+    <name>SimpleTextTools</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor>jf</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
+    <description><![CDATA[
+         <hr>
+        <p>Provides convenient text editing tools to enhance multi-caret editing and text formatting efficiency.</p>
+
+        <h3>Key Features:</h3>
+        <ul>
+            <li><b>SplitNewLines</b> - Split text into multiple lines by specified delimiters (e.g., comma, semicolon, pipe), with options to keep or remove delimiters</li>
+            <li><b>CaretsPosition</b> - Automatically add multiple carets after specified tokens for batch editing</li>
+            <li><b>CaretsStartPosition</b> - Add carets at the beginning of each line for rapid multi-line editing</li>
+        </ul>
+
+        <p>All features are accessible via the "TextTools" option in the editor's right-click context menu.</p>
+67    ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+
+    </extensions>
+    <actions>
+        <group id = "TextOptionGroup"
+               text="TextTools"
+               description="text tools"
+               popup="true">
+            <add-to-group group-id="EditorPopupMenu"   anchor="first"/>
+
+            <action id = "MultiCaretAfterTokenAction"
+                    class="com.jf.text.tools.newline.MultiCartAfterTokenAction"
+                    text="CaretsPosition"
+                    description="get positions by token">
+            </action>
+
+            <action id = "SplitToLinesByCharsAction"
+                    class="com.jf.text.tools.newline.SplitToLinesByCharsAction"
+                    text="SplitNewLines"
+                    description="split new lines by token">
+            </action>
+
+            <action id = "CaretsToLinesStartAction"
+                    class="com.jf.text.tools.newline.CaretsToLinesStartAction"
+                    text="CaretsStartPosition"
+                    description="get positions by start">
+            </action>
+        </group>
+    </actions>
+</idea-plugin>
